@@ -1,0 +1,26 @@
+.blue-color {
+  color: blue;
+}
+.parent_class {
+  height: 50vh;
+  width: 100vw;
+}
+.my-class {
+  height: 100%;
+  width: 50%;
+  overflow: auto;
+  background-color: aqua;
+  color: red;
+  border: 20px solid red;
+  border-style: ridge;
+  padding: 50px;
+}
+.another-class {
+  margin-right: 50px;
+  height: 500px;
+  width: 500px;
+  background-color: aqua;
+  color: red;
+  border: 20px solid red;
+  border-style: ridge;
+}
