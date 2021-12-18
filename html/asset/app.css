@@ -1,26 +1,36 @@
-.blue-color {
-  color: blue;
+* {
+  background-color: black;
+  color: white;
 }
-.parent_class {
-  height: 50vh;
-  width: 100vw;
+
+.parentlink {
+  background-color: rgb(23, 20, 197);
 }
-.my-class {
-  height: 100%;
-  width: 50%;
-  overflow: auto;
-  background-color: aqua;
+
+.mylink {
   color: red;
-  border: 20px solid red;
-  border-style: ridge;
-  padding: 50px;
+  padding: 15px;
+  margin: 15px;
+  text-decoration: none;
+  border: 2px solid red;
+  text-align: center;
+  display: inline-block;
 }
-.another-class {
-  margin-right: 50px;
-  height: 500px;
-  width: 500px;
-  background-color: aqua;
+
+.mylink:hover {
+  color: white;
+}
+
+.title:hover {
   color: red;
-  border: 20px solid red;
-  border-style: ridge;
+  cursor: pointer;
+}
+
+table,
+th,
+td {
+  border: 1px solid white;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
 }
