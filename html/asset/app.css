@@ -5,6 +5,16 @@
 
 .parentlink {
   background-color: rgb(23, 20, 197);
+  width: 100%;
+}
+
+.banner {
+  width: 100vw;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
 }
 
 .mylink {
@@ -24,6 +34,54 @@
 .title:hover {
   color: red;
   cursor: pointer;
+}
+
+.parent-box {
+  height: 800px;
+  width: 800px;
+  background-color: rgb(23, 20, 197);
+}
+
+.box-red {
+  height: 50px;
+  width: 50px;
+  border-radius: 2% !important;
+  border: 2px solid black;
+  background-color: red;
+  position: static;
+}
+.box-blue {
+  height: 50px;
+  width: 50px;
+  background-color: blue;
+  border: 2px solid black;
+}
+
+.title {
+  width: 100%;
+  padding: 1em;
+  border: 2px solid wheat;
+  position: sticky;
+  top: 2%;
+  left: 40%;
+}
+
+.car-img {
+  float: right;
+  margin: 1em;
+}
+
+.our-partner {
+  background-color: blue;
+  list-style-type: none;
+  text-align: center;
+}
+
+.our-partner li {
+  display: inline-block;
+  padding: 1em;
+  margin: 1em;
+  border: 2px solid wheat;
 }
 
 table,
