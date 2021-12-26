@@ -2,10 +2,18 @@
   background-color: black;
   color: white;
 }
+h2 {
+  font-weight: lighter;
+  font-size: small;
+}
 
 .parentlink {
   background-color: rgb(23, 20, 197);
   width: 100%;
+}
+
+a:active {
+  font-size: large;
 }
 
 .banner {
@@ -15,6 +23,11 @@
 .banner-img {
   width: 100%;
   height: auto;
+  opacity: 0.5;
+}
+
+.banner-img:hover {
+  opacity: 1;
 }
 
 .mylink {
@@ -84,6 +97,10 @@
   border: 2px solid wheat;
 }
 
+footer :first-child {
+  background-color: red;
+}
+
 table,
 th,
 td {
@@ -91,4 +108,21 @@ td {
   padding: 5px;
   width: 100%;
   text-align: center;
+}
+
+div span {
+  border: 2px solid blue;
+}
+
+footer > p {
+  width: 100%;
+  height: auto;
+  padding: 15px;
+  background-color: white;
+  color: black;
+}
+
+footer p:hover {
+  background-color: black;
+  color: white;
 }
