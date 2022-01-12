@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      #caluator {
+        width: 80vw;
+        height: 300px;
+        border: 1px solid black;
+        margin: 0 auto;
+        text-align: center;
+        display: flex;
+      }
+
+      #calculation {
+        width: 80vw;
+        height: 150px;
+        border: 1px solid black;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      #result {
+        font-size: larger;
+        font-weight: heavy;
+        font-size: 90px;
+      }
+
+      #caluator input {
+        width: 100%;
+        height: 100%;
+        border: 2px solid black;
+        text-align: center;
+        font-size: 30px;
+      }
+
+      #button {
+        width: 60vw;
+        height: 50px;
+        border: 2px solid black;
+        text-align: center;
+        font-size: 30px;
+        position: relative;
+        left: 22%;
+      }
+
+      select {
+        width: 100%;
+        height: 100%;
+        border: 2px solid black;
+        text-align: center;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calculation">
+      <h1 id="result"></h1>
+    </div>
+    <br />
+    <div id="caluator">
+      <input type="number" name="a" id="a" placeholder="Enter Number" />
+      <input type="number" name="b" id="b" placeholder="Enter Number" />
+    </div>
+    <br />
+    <select name="operation" id="operation" onchange="calculate()">
+      <option selected disabled>Select Operation ...</option>
+      <option value="1">Addition</option>
+      <option value="2">Subtraction</option>
+      <option value="3">Multiplication</option>
+      <option value="4">Division</option>
+    </select>
+
+    <script src="asset/calculator.js"></script>
+  </body>
+</html>
