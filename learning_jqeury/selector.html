@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Selector in Jquery</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <h1>Title</h1>
@@ -56,6 +63,54 @@
 
     <input type="text" name="" id="form" />
     <h5 id="form-value"></h5>
+
+    <br />
+    <button id="hide-button">Hide Button</button>
+    <button id="show-button">Show Button</button>
+    <button id="toggle-button">Toggle Button</button>
+    <div
+      id="square"
+      class="bg-primary"
+      style="width: 500px; height: 500px"
+    ></div>
+    <br />
+    <div class="row">
+      <div class="col-lg-12">
+        <button class="btn btn-primary" id="ghost">Ghost</button>
+      </div>
+      <div class="col-lg-12" id="boo" style="display: none">
+        <div class="card">
+          <div class="card-body">
+            <h1 class="text-center"><b>Booooooooooo!</b></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <button id="circle-fadein-button">Fade In Button</button>
+    <button id="circle-fadeout-button">Fade Out Button</button>
+    <button id="circle-fadeToggle-button">Fade Toggle Button</button>
+    <div
+      id="circle"
+      class="bg-warning"
+      style="width: 500px; height: 500px; border-radius: 50%"
+    ></div>
+    <br />
+    <button id="animate-square">Animate Square</button>
+    <button id="animate-circle">Animate Circle</button>
+    <button id="animate-slideupdown">Animate Slide up down</button>
+    <button id="stop-animation">Stop Animation</button>
+    <div
+      id="animate"
+      class="bg-danger"
+      style="height: 500px; width: 500px"
+    ></div>
+
+    <br />
+    <button id="toggleDanger">Toggle Danger</button>
+    <button id="addPrimary">Add Primary</button>
+    <button id="addWarning">Add Warning</button>
+    <div id="abc" style="width: 500px; height: 500px; border-radius: 50%"></div>
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
