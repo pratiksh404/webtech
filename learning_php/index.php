@@ -12,6 +12,7 @@
 
   <?php include 'backend/string.php'; ?>
   <?php include 'backend/number.php'; ?>
+  <?php include 'backend/array.php'; ?>
   <h1>TEST</h1>
   <script>
     console.log("Hello World");

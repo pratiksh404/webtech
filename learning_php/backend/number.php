@@ -40,3 +40,47 @@ echo "<br>";
 echo dechex(12); // c
 echo "<br>";
 echo decoct(12); // 14
+const PI = 3.14;
+echo "<br>";
+echo PI;
+
+define("MY_CONSTANT", "Hello World Constant");
+
+echo "<br>";
+echo MY_CONSTANT;
+echo "<br>";
+
+$xyz = 1;
+
+switch ($xyz) {
+    case 1:
+        echo "One";
+        break;
+    case 2:
+        echo "Two";
+        break;
+    case 3:
+        echo "Three";
+        break;
+    default:
+        echo "None";
+}
+
+$fruits = ["Apple", "Banana", "Orange"];
+
+for ($i = 0; $i < count($fruits); $i++) {
+    echo "<br>";
+    echo $fruits[$i];
+}
+
+$count = 0;
+while ($count < count($fruits)) {
+    echo "<br>";
+    echo $fruits[$count];
+    $count++;
+}
+
+foreach ($fruits as $fruit) {
+    echo "<br>";
+    echo $fruit;
+}
