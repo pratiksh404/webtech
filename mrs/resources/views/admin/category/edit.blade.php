@@ -6,6 +6,7 @@
         Edit Category
     </div>
     <div class="card-body">
+        @include('admin.layouts.error')
         <form action="{{route('category.update',['category' => $category->id])}}" method="POST">
             @csrf
             @method('PATCH')

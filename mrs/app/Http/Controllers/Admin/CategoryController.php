@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -37,9 +38,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-            'name' => $request->name,
-        ]);
+        Category::create($this->validateCategoryData($request));
         return redirect()->route('category.index')->with('success', 'Category created successfully');
     }
 
@@ -74,10 +73,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $category->update([
-            'name' => $request->name,
-        ]);
-        return redirect()->route('category.index')->with('success', 'Category updated successfully');
+        $category->update($this->validateCategoryData($request));
+        return redirect()->route('category.index')->with('info', 'Category updated successfully');
     }
 
     /**
@@ -89,6 +86,15 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('category.index')->with('success', 'Category deleted successfully');
+        return redirect()->route('category.index')->with('danger', 'Category deleted successfully');
+    }
+
+    // Validate Category Data
+    protected function validateCategoryData(Request $request)
+    {
+        return $request->validate([
+            'name' => 'required|unique:categories,name|max:255',
+            'slug' => 'required|unique:categories,slug|max:255',
+        ]);
     }
 }
