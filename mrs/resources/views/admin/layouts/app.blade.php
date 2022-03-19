@@ -51,6 +51,11 @@
                 </ul>
             </div>
             <div class="col-lg-10">
+                {{-- Flash Message --}}
+                @include('admin.layouts.flash')
+                {{-- Error Alerts --}}
+                @include('admin.layouts.error')
+                {{-- Content --}}
                 @yield('content')
             </div>
         </div>

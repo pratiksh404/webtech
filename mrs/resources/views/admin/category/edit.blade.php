@@ -6,14 +6,10 @@
         Edit Category
     </div>
     <div class="card-body">
-        @include('admin.layouts.error')
         <form action="{{route('category.update',['category' => $category->id])}}" method="POST">
             @csrf
             @method('PATCH')
-            <div class="form-group">
-                <label for="">Category Name</label>
-                <input type="text" class="form-control" name="name" id="" value="{{$category->name}}">
-            </div>
+            @include('admin.layouts.module.category.form')
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">Edit</button>
             </div>

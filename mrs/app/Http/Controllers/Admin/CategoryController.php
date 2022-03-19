@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::latest()->paginate(5);
         return view('admin.category.index', compact('categories'));
     }
 
@@ -33,12 +33,12 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        Category::create($this->validateCategoryData($request));
+        Category::create($request->validated());
         return redirect()->route('category.index')->with('success', 'Category created successfully');
     }
 
@@ -67,13 +67,13 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CategoryRequest  $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        $category->update($this->validateCategoryData($request));
+        $category->update($request->validated());
         return redirect()->route('category.index')->with('info', 'Category updated successfully');
     }
 
@@ -87,14 +87,5 @@ class CategoryController extends Controller
     {
         $category->delete();
         return redirect()->route('category.index')->with('danger', 'Category deleted successfully');
-    }
-
-    // Validate Category Data
-    protected function validateCategoryData(Request $request)
-    {
-        return $request->validate([
-            'name' => 'required|unique:categories,name|max:255',
-            'slug' => 'required|unique:categories,slug|max:255',
-        ]);
     }
 }
