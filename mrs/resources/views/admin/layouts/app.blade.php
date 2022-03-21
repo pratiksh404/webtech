@@ -20,35 +20,8 @@
     <div class="container-fluid p-3">
         <div class="row">
             <div class="col-lg-2">
-                <ul class="list-group">
-                    @auth
-                    <li class="list-group-item">
-                        <a href="{{ route('home') }}" class="btn btn-primary">Website</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="{{ route('dashboard') }}" class="btn btn-primary">Dashboard</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="{{ route('logout') }}" class="btn btn-primary">Log Out</a>
-                    </li>
-                    @else
-                    <li class="list-group-item">
-                        <a href="{{ route('login') }}" class="btn btn-primary">Log in</a>
-                    </li>
-                    @endauth
-                    <div class="list-group-item">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-expanded="false">
-                                Category
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ route('category.index') }}">All Category</a>
-                                <a class="dropdown-item" href="{{ route('category.create') }}">Create Category</a>
-                            </div>
-                        </div>
-                    </div>
-                </ul>
+                {{-- Side Menu --}}
+                @include('admin.layouts.sidemenu')
             </div>
             <div class="col-lg-10">
                 {{-- Flash Message --}}
@@ -64,6 +37,12 @@
     {{-- Bootstrap --}}
     <script src="{{asset('assets/jquery/jquery.slim.min.js')}}"></script>
     <script src="{{asset('assets/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    {{-- CK Editor --}}
+    <script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        CKEDITOR.replace( 'description' );
+    </script>
 </body>
 
 </html>

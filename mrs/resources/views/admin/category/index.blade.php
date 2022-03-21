@@ -61,5 +61,7 @@
         @endisset
     </tbody>
 </table>
+@if (isset($categories))
 {{$categories->links()}}
+@endif
 @endsection

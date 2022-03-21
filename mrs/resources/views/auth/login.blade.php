@@ -32,6 +32,13 @@
                             <div class="card-body">
                                 <h5 class="card-title">Sign in to account</h5>
                                 <span class="text-muted">Enter your email & password to login</span>
+
+                                @if ($message = Session::get('error'))
+                                <div class="alert alert-danger fade show" role="alert">
+                                    <strong>Error !</strong> {{$message}}
+                                </div>
+                                @endif
+
                                 <div class="mt-2">
                                     <form action="{{ route('authenticate') }}" method="POST">
                                         @csrf
@@ -40,11 +47,17 @@
                                             <input type="email" name="email" class="form-control" id="email"
                                                 placeholder="Email" />
                                         </div>
+                                        @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         <div class="mb-2">
                                             <label for="password">Password</label>
                                             <input type="password" name="password" class="form-control" id="password"
                                                 placeholder="********" />
                                         </div>
+                                        @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                         <button type="submit" class="btn btn-outline-primary">
                                             Login
                                         </button>
