@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Movie;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\MovieRequest;
+use App\Http\Controllers\Controller;
 
 class MovieController extends Controller
 {
@@ -16,7 +17,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return view('admin.movie.index');
+        $movies = Movie::latest()->paginate(10);
+        return view('admin.movie.index', compact('movies'));
     }
 
     /**
@@ -26,7 +28,8 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view('admin.movie.create');
+        $categories = Category::all(['id', 'name']);
+        return view('admin.movie.create', compact('categories'));
     }
 
     /**
@@ -37,7 +40,8 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request)
     {
-        //
+        Movie::create($request->validated());
+        return redirect()->route('movie.index')->with('success', 'Movie has been created successfully');
     }
 
     /**
@@ -59,7 +63,8 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        return view('admin.movie.edit');
+        $categories = Category::all(['id', 'name']);
+        return view('admin.movie.edit', compact('movie', 'categories'));
     }
 
     /**
@@ -69,9 +74,10 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Movie $movie)
+    public function update(MovieRequest $request, Movie $movie)
     {
-        //
+        $movie->update($request->validated());
+        return redirect()->route('movie.index')->with('info', 'Movie has been updated successfully');
     }
 
     /**

@@ -13,6 +13,7 @@
             <th>ID</th>
             <th>Category Name</th>
             <th>Category Slug</th>
+            <th>Movies</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -23,6 +24,7 @@
             <td>{{$category->id}}</td>
             <td>{{$category->name}}</td>
             <td>{{$category->slug}}</td>
+            <td>{{$category->movies->count() ?? 0}}</td>
             <td>
                 <a href="{{route('category.show',['category' => $category->id])}}" class="btn btn-info">Show</a>
                 <a href="{{route('category.edit',['category' => $category->id])}}" class="btn btn-warning">Edit</a>

@@ -13,6 +13,10 @@
             <th>ID</th>
             <th>Movie Name</th>
             <th>Movie Slug</th>
+            <th>Category</th>
+            <th>Duration (mins)</th>
+            <th>Year</th>
+            <th>Country</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -22,7 +26,11 @@
         <tr>
             <td>{{$movie->id}}</td>
             <td>{{$movie->name}}</td>
-            <td>{{$movie->slug}}</td>
+            <td>{{\Illuminate\Support\Str::slug($movie->name)}}</td>
+            <td><span class="badge badge-primary">{{$movie->category->name ?? 'N/A'}}</span></td>
+            <td>{{$movie->duration ?? 'N/A'}} mins</td>
+            <td>{{$movie->year ?? 'N/A'}}</td>
+            <td>{{$movie->country ?? 'N/A'}}</td>
             <td>
                 <a href="{{route('movie.show',['movie' => $movie->id])}}" class="btn btn-info">Show</a>
                 <a href="{{route('movie.edit',['movie' => $movie->id])}}" class="btn btn-warning">Edit</a>

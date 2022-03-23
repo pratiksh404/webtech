@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // Primary Key of movies table
             $table->string('code')->unique();
             $table->string('name');
+            $table->unsignedBigInteger('category_id'); // Foreign Key of categories table
             $table->string('source');
             $table->text('description')->nullable();
             $table->string('image')->nullable();

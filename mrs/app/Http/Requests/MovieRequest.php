@@ -17,6 +17,18 @@ class MovieRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'code' => $this->movie->code ?? rand(100000, 999999),
+        ]);
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -25,8 +37,9 @@ class MovieRequest extends FormRequest
     {
         $id = $this->movie->id ?? null;
         return [
-            'code' => 'required|max:255|unique:movies,code'/*  . $id */,
+            'code' => 'required|max:255|unique:movies,code,' . $id,
             'name' => 'required|max:255',
+            'category_id' => 'required|exists:categories,id',
             'source' => 'required|max:255',
             'description' => 'nullable|max:5500',
             'image' => 'nullable|file|image|max:3000',
