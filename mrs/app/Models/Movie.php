@@ -11,8 +11,29 @@ class Movie extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['embeded_trailer', 'embeded_source'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    // Accessor
+    public function getNameAttribute($value)
+    {
+        return $value . " ram";
+    }
+
+    public function getEmbededTrailerAttribute()
+    {
+        if (isset($this->trailer)) {
+            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe class="embed-responsive-item" width="420" height="315" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $this->trailer);
+        }
+    }
+    public function getEmbededSourceAttribute()
+    {
+        if (isset($this->source)) {
+            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe class="embed-responsive-item" width="420" height="315" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $this->source);
+        }
     }
 }

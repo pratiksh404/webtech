@@ -63,7 +63,8 @@
                 <option disabled selected>Select Movie Category ... </option>
                 @isset($categories)
                 @foreach ($categories as $category)
-                <option value="{{$category->id}}">{{$category->name}}</option>
+                <option value="{{$category->id}}" {{isset($movie->category_id) ? ($movie->category_id == $category->id ?
+                    'selected' : '') : ''}}>{{$category->name}}</option>
                 @endforeach
                 @endisset
             </select>
@@ -72,8 +73,13 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <label for="image">Image Thumbnail</label>
         <input type="file" name="image" id="image">
+    </div>
+    <div class="col-lg-6">
+        @isset($movie->image)
+        <img src="{{asset('storage/'. $movie->image)}}" alt="{{$movie->name}}" width="250">
+        @endisset
     </div>
 </div>

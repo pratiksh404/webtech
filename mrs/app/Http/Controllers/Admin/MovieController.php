@@ -40,7 +40,8 @@ class MovieController extends Controller
      */
     public function store(MovieRequest $request)
     {
-        Movie::create($request->validated());
+        $movie = Movie::create($request->validated());
+        $this->uploadImage($request, $movie);
         return redirect()->route('movie.index')->with('success', 'Movie has been created successfully');
     }
 
@@ -52,7 +53,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+        return view('admin.movie.show', compact('movie'));
     }
 
     /**
@@ -77,6 +78,7 @@ class MovieController extends Controller
     public function update(MovieRequest $request, Movie $movie)
     {
         $movie->update($request->validated());
+        $this->uploadImage($request, $movie);
         return redirect()->route('movie.index')->with('info', 'Movie has been updated successfully');
     }
 
@@ -89,5 +91,21 @@ class MovieController extends Controller
     public function destroy(Movie $movie)
     {
         //
+    }
+
+    // Image Upload
+    private function uploadImage(MovieRequest $request, Movie $movie)
+    {
+        if ($request->has('image')) {
+            $name = $this->validImageName(request()->image->getClientOriginalName());
+            $path = $request->file('image')->storeAs('images/category', $name, 'public');
+            $movie->update(['image' => $path]);
+        }
+    }
+
+    // Valid Image Name
+    private function validImageName($name)
+    {
+        return strtolower(str_replace([' ', '-', '$', '<', '>', '&', '{', '}', '*', '\\', '/', ':' . ';', ',', "'", '"', "?"], '', trim($name)));
     }
 }

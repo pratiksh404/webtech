@@ -19,7 +19,7 @@
                 <table class="table table-border table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Movie</th>
                             <th>Movie Name</th>
                             <th>Movie Slug</th>
                             <th>Category</th>
@@ -32,7 +32,11 @@
                     <tbody>
                         @foreach ($category->movies as $movie)
                         <tr>
-                            <td>{{$movie->id}}</td>
+                            <td>
+                                @isset($movie->image)
+                                <img src="{{asset('storage/' . $movie->image)}}" alt="{{$movie->name}}" width="150">
+                                @endisset
+                            </td>
                             <td>{{$movie->name}}</td>
                             <td>{{\Illuminate\Support\Str::slug($movie->name)}}</td>
                             <td><span class="badge badge-primary">{{$movie->category->name ?? 'N/A'}}</span></td>

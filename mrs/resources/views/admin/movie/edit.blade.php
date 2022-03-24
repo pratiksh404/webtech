@@ -6,7 +6,7 @@
         Edit Movie
     </div>
     <div class="card-body">
-        <form action="{{route('movie.update',['movie' => $movie->id])}}" method="POST">
+        <form action="{{route('movie.update',['movie' => $movie->id])}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
             @include('admin.layouts.module.movie.form')

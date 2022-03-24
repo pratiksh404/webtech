@@ -6,7 +6,7 @@
         Create Movie
     </div>
     <div class="card-body">
-        <form action="{{route('movie.store')}}" method="POST">
+        <form action="{{route('movie.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             @include('admin.layouts.module.movie.form')
             <div class="form-group">
