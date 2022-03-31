@@ -31,7 +31,13 @@
             </td>
             <td>{{$movie->name}}</td>
             <td>{{\Illuminate\Support\Str::slug($movie->name)}}</td>
-            <td><span class="badge badge-primary">{{$movie->category->name ?? 'N/A'}}</span></td>
+            <td>
+                @isset($movie->categories)
+                @foreach ($movie->categories as $category)
+                <span class="badge badge-primary">{{$category->name ?? 'N/A'}}</span>
+                @endforeach
+                @endisset
+            </td>
             <td>{{$movie->duration ?? 'N/A'}} mins</td>
             <td>{{$movie->year ?? 'N/A'}}</td>
             <td>{{$movie->country ?? 'N/A'}}</td>

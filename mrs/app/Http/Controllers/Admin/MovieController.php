@@ -41,7 +41,10 @@ class MovieController extends Controller
     public function store(MovieRequest $request)
     {
         $movie = Movie::create($request->validated());
+        /* Upload Movie Thumbnail */
         $this->uploadImage($request, $movie);
+        /* Attach Categories */
+        $this->attachCategory($movie);
         return redirect()->route('movie.index')->with('success', 'Movie has been created successfully');
     }
 
@@ -79,6 +82,8 @@ class MovieController extends Controller
     {
         $movie->update($request->validated());
         $this->uploadImage($request, $movie);
+        /* Attach Categories */
+        $this->attachCategory($movie, true);
         return redirect()->route('movie.index')->with('info', 'Movie has been updated successfully');
     }
 
@@ -90,7 +95,9 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->categories()->detach();
+        $movie->delete();
+        return redirect()->route('movie.index')->with('danger', 'Movie has been deleted successfully');
     }
 
     // Image Upload
@@ -107,5 +114,22 @@ class MovieController extends Controller
     private function validImageName($name)
     {
         return strtolower(str_replace([' ', '-', '$', '<', '>', '&', '{', '}', '*', '\\', '/', ':' . ';', ',', "'", '"', "?"], '', trim($name)));
+    }
+
+    // Attach Category
+    private function attachCategory(Movie $movie, bool $is_update = false)
+    {
+        request()->validate([
+            'categories' => 'required|array',
+            'categories.*' => 'required|exists:categories,id',
+        ]);
+
+        if (request()->has('categories')) {
+            if ($is_update) {
+                $movie->categories()->sync(request()->categories);
+            } else {
+                $movie->categories()->attach(request()->categories);
+            }
+        }
     }
 }

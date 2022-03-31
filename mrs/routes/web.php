@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Admin\ActorController;
+use App\Models\Movie;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +29,14 @@ Route::post('authenticate', [LoginController::class, 'authenticate'])->name('aut
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    /* Route::get('allcategory', [CategoryController::class, 'allcategory'])->name('allcategory');
-Route::get('createcategory', [CategoryController::class, 'createCategory']);
-Route::post('storecategory', [CategoryController::class, 'storeCategory']);
-Route::get('showcategory/{category}', [CategoryController::class, 'showCategory']);
-Route::get('editcategory/{id}', [CategoryController::class, 'editCategory']);
-Route::post('updatecategory/{id}', [CategoryController::class, 'updateCategory']);
-Route::get('deletecategory/{id}', [CategoryController::class, 'deleteCategory']); */
     Route::resource('category', CategoryController::class);
     Route::resource('movie', MovieController::class);
+    Route::resource('actor', ActorController::class);
+
+    Route::get('/test', function () {
+        $m = Movie::first();
+        $m->categories()->attach([11, 18, 21]);
+
+        dd($m->categories);
+    });
 });

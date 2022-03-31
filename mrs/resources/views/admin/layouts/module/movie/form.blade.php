@@ -57,21 +57,21 @@
         </div>
     </div>
     <div class="col-lg-4">
-        <label for="category_id">Movie Category <span class="text-danger">*</span></label>
+        <label for="categories">Movie Category <span class="text-danger">*</span></label>
         <div class="input-group">
-            <select name="category_id" id="category_id" class="form-control">
-                <option disabled selected>Select Movie Category ... </option>
+            <select name="categories[]" id="categories" class="form-control" multiple>
                 @isset($categories)
                 @foreach ($categories as $category)
-                <option value="{{$category->id}}" {{isset($movie->category_id) ? ($movie->category_id == $category->id ?
-                    'selected' : '') : ''}}>{{$category->name}}</option>
+                <option value="{{$category->id}}" {{isset($movie->categories) ?
+                    (in_array($category->id,$movie->categories->pluck('id')->toArray()) ? 'selected' : '') :
+                    ''}}>{{$category->name}}</option>
                 @endforeach
                 @endisset
             </select>
         </div>
     </div>
 </div>
-<br>
+<br>`
 <div class="row">
     <div class="col-lg-6">
         <label for="image">Image Thumbnail</label>

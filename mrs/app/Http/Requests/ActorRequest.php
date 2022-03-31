@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
-class MovieRequest extends FormRequest
+class ActorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +25,7 @@ class MovieRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'code' => $this->movie->code ?? rand(100000, 999999),
+            'slug' => Str::slug($this->name),
         ]);
     }
 
@@ -35,17 +36,10 @@ class MovieRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->movie->id ?? null;
+        $id = $this->actor->id ?? '';
         return [
-            'code' => 'required|max:255|unique:movies,code,' . $id,
-            'name' => 'required|max:255',
-            'source' => 'required|max:255',
-            'description' => 'nullable|max:5500',
-            'image' => 'nullable|file|image|max:3000',
-            'trailer' => 'nullable|max:255',
-            'duration' => 'nullable|integer',
-            'year' => 'nullable|integer',
-            'country' => 'nullable|max:30',
+            'slug' => 'required|unique:actors,slug,' . $id,
+            'name' => 'required|unique:actors,name,' . $id,
         ];
     }
 }

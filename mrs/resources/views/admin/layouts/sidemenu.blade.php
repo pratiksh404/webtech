@@ -38,4 +38,16 @@
             </div>
         </div>
     </div>
+    <div class="list-group-item">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-expanded="false">
+                Actor
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{{ route('actor.index') }}">All Actor</a>
+                <a class="dropdown-item" href="{{ route('actor.create') }}">Create Actor</a>
+            </div>
+        </div>
+    </div>
 </ul>

@@ -12,6 +12,7 @@
 
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/select2/select2.css') }}">
 
 
 </head>
@@ -37,6 +38,15 @@
     {{-- Bootstrap --}}
     <script src="{{asset('assets/jquery/jquery.slim.min.js')}}"></script>
     <script src="{{asset('assets/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('assets/select2/select2.js')}}"></script>
+
+    <script>
+        $(function(){
+            $('#categories').select2({
+                placeholder: "Select a categories",
+            });
+        });
+    </script>
 
     {{-- CK Editor --}}
     <script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>

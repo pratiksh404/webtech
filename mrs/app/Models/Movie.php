@@ -13,16 +13,11 @@ class Movie extends Model
 
     protected $appends = ['embeded_trailer', 'embeded_source'];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
-    // Accessor
-    public function getNameAttribute($value)
-    {
-        return $value . " ram";
-    }
 
     public function getEmbededTrailerAttribute()
     {
