@@ -10,10 +10,12 @@
 <table class="table table-border table-hover">
     <thead>
         <tr>
+            <th>Featured</th>
             <th>Image</th>
             <th>Movie Name</th>
             <th>Movie Slug</th>
-            <th>Category</th>
+            <th>Categories</th>
+            <th>Actors</th>
             <th>Duration (mins)</th>
             <th>Year</th>
             <th>Country</th>
@@ -24,6 +26,7 @@
         @isset($movies)
         @foreach ($movies as $movie)
         <tr>
+            <td>{{$movie->featured ? "Featured" : "Not Featured"}}</td>
             <td>
                 @isset($movie->image)
                 <img src="{{asset('storage/' . $movie->image)}}" alt="{{$movie->name}}" width="150">
@@ -35,6 +38,13 @@
                 @isset($movie->categories)
                 @foreach ($movie->categories as $category)
                 <span class="badge badge-primary">{{$category->name ?? 'N/A'}}</span>
+                @endforeach
+                @endisset
+            </td>
+            <td>
+                @isset($movie->actors)
+                @foreach ($movie->actors as $actor)
+                <span class="badge badge-primary">{{$actor->name ?? 'N/A'}}</span>
                 @endforeach
                 @endisset
             </td>

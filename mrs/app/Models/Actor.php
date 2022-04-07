@@ -10,4 +10,10 @@ class Actor extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    // Relaionships
+    public function movies()
+    {
+        return $this->belongsToMany(Movie::class, 'actor_movie');
+    }
 }

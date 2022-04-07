@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Website\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,7 @@ use App\Http\Controllers\Admin\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [PageController::class, 'home'])->name('home');
 
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');

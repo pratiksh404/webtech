@@ -13,6 +13,7 @@
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/select2/select2.css') }}">
+    <link rel="stylesheet" href="{{asset('assets/datepicker/datepicker.css')}}">
 
 
 </head>
@@ -39,11 +40,18 @@
     <script src="{{asset('assets/jquery/jquery.slim.min.js')}}"></script>
     <script src="{{asset('assets/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/select2/select2.js')}}"></script>
+    <script src="{{asset('assets/datepicker/datepicker.js')}}"></script>
 
     <script>
         $(function(){
             $('#categories').select2({
                 placeholder: "Select a categories",
+            });
+            $('#actors').select2({
+                placeholder: "Select a actors",
+            });
+            $('#release_date').datepicker({
+                format: 'yyyy-mm-dd',
             });
         });
     </script>

@@ -46,6 +46,9 @@ class MovieRequest extends FormRequest
             'duration' => 'nullable|integer',
             'year' => 'nullable|integer',
             'country' => 'nullable|max:30',
+            'quality' => 'nullable|max:4|numeric',
+            'release_date' => 'nullable',
+            'featured' => 'nullable|boolean',
         ];
     }
 }

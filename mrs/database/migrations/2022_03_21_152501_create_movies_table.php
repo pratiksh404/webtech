@@ -24,6 +24,9 @@ return new class extends Migration
             $table->integer('duration')->nullable();
             $table->integer('year')->nullable();
             $table->string('country')->nullable();
+            $table->integer("quality")->default(1);
+            $table->dateTime('release_date')->nullable();
+            $table->boolean('featured')->default(false);
             $table->timestamps();
         });
     }
