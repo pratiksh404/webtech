@@ -9,14 +9,13 @@
                         data-lap_num="1" data-tab_num="1" data-mob_num="1" data-mob_sm="1" data-autoplay="true"
                         data-loop="true" data-margin="0">
                         @foreach ($featured_movies as $featured_movie)
-                        <div class="item" style="background: url('{{asset('storage/' . $featured_movie->image)}}')">
+                        <div class="item" style="background: url('{{$featured_movie->image}}')">
                             <div class="gen-movie-contain-style-2 h-100">
                                 <div class="container h-100">
                                     <div class="row flex-row-reverse align-items-center h-100">
                                         <div class="col-xl-6">
                                             <div class="gen-front-image">
-                                                <img src="{{asset('storage/' . $featured_movie->image)}}"
-                                                    alt=" owl-carousel-banner-image">
+                                                <img src="{{$featured_movie->image}}" alt=" owl-carousel-banner-image">
                                                 <a href="{{$featured_movie->trailer}}"
                                                     class="playBut popup-youtube popup-vimeo popup-gmaps">
                                                     <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In  -->

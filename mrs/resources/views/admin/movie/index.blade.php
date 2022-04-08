@@ -29,7 +29,7 @@
             <td>{{$movie->featured ? "Featured" : "Not Featured"}}</td>
             <td>
                 @isset($movie->image)
-                <img src="{{asset('storage/' . $movie->image)}}" alt="{{$movie->name}}" width="150">
+                <img src="{{$movie->image}}" alt="{{$movie->name}}" width="150">
                 @endisset
             </td>
             <td>{{$movie->name}}</td>

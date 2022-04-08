@@ -45,4 +45,17 @@ class Movie extends Model
             2 => 'CAM'
         ][$attribute] : null;
     }
+
+    public function getImageAttribute($attribute)
+    {
+        if (isset($attribute)) {
+            if (file_exists(public_path('storage/' . $attribute))) {
+                return asset('storage/' . $attribute);
+            } else {
+                return $attribute;
+            }
+        } else {
+            return 'https://via.placeholder.com/300x400';
+        }
+    }
 }
