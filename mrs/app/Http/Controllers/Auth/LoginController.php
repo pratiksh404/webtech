@@ -26,7 +26,7 @@ class LoginController extends Controller
         );
 
         if (Auth::attempt($user_data)) {
-            return redirect()->route('dashboard');
+            return redirect()->route('home');
         } else {
             return back()->with('error', 'Wrong Login Details');
         }

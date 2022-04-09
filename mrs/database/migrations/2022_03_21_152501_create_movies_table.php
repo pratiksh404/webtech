@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id(); // Primary Key of movies table
             $table->string('code')->unique();
             $table->string('name');
+            $table->string('slug');
             $table->string('source');
             $table->text('description')->nullable();
             $table->string('image')->nullable();

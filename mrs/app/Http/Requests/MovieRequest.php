@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MovieRequest extends FormRequest
@@ -25,6 +26,7 @@ class MovieRequest extends FormRequest
     {
         $this->merge([
             'code' => $this->movie->code ?? rand(100000, 999999),
+            'slug' => $this->movie->slug ?? Str::slug($this->name),
         ]);
     }
 
@@ -38,7 +40,8 @@ class MovieRequest extends FormRequest
         $id = $this->movie->id ?? null;
         return [
             'code' => 'required|max:255|unique:movies,code,' . $id,
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:movies,name,' . $id,
+            'slug' => 'required|max:255|unique:movies,slug,' . $id,
             'source' => 'required|max:255',
             'description' => 'nullable|max:5500',
             'image' => 'nullable|file|image|max:3000',

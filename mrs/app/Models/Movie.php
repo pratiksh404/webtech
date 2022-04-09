@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Actor;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Movie extends Model
+class Movie extends Model implements Viewable
 {
+    use InteractsWithViews;
     use HasFactory;
 
     protected $guarded = [];
@@ -27,13 +32,17 @@ class Movie extends Model
     public function getEmbededTrailerAttribute()
     {
         if (isset($this->trailer)) {
-            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe class="embed-responsive-item" width="420" height="315" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $this->trailer);
+            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe class="embed-responsive-item" width="100%" height="550px" src="//www.youtube.com/embed/$1" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>', $this->trailer);
         }
     }
     public function getEmbededSourceAttribute()
     {
         if (isset($this->source)) {
-            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe class="embed-responsive-item" width="420" height="315" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>', $this->source);
+            return preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i", '<iframe class="embed-responsive-item" width="100%" height="550px" src="//www.youtube.com/embed/$1" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>', $this->source);
         }
     }
 
@@ -57,5 +66,10 @@ class Movie extends Model
         } else {
             return 'https://via.placeholder.com/300x400';
         }
+    }
+
+    public function getReleaseDateAttribute($attribute)
+    {
+        return !is_null($attribute) ? Carbon::create($attribute)->toFormatteddatestring() : null;
     }
 }

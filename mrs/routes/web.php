@@ -20,22 +20,24 @@ use App\Http\Controllers\Website\PageController;
 |
 */
 
+// Website Routes
 Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/movies', [PageController::class, 'movies'])->name('movies');
+Route::get('/latest-movies', [PageController::class, 'latestMovies'])->name('latestMovies');
+Route::get('/most-watched-movies', [PageController::class, 'mostWatchedMovies'])->name('mostWatchedMovies');
+Route::get('/movie/{movie:slug}', [PageController::class, 'movie'])->name('movie');
+Route::get('/category/{category:slug}', [PageController::class, 'category'])->name('category');
+Route::post('/search', [PageController::class, 'search'])->name('search');
 
+// Login Register Routes
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 
+// Backend routes
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('category', CategoryController::class);
     Route::resource('movie', MovieController::class);
     Route::resource('actor', ActorController::class);
-
-    Route::get('/test', function () {
-        $m = Movie::first();
-        $m->categories()->attach([11, 18, 21]);
-
-        dd($m->categories);
-    });
 });

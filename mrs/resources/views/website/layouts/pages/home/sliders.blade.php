@@ -69,7 +69,8 @@
                                                             <strong>Genre :</strong>
                                                             @foreach ($featured_movie->categories as $category)
                                                             <span>
-                                                                <a href="action.html">
+                                                                <a
+                                                                    href="{{route('category',['category' => $category->slug])}}">
                                                                     {{$category->name ?? "N/A"}}, </a>
                                                             </span>
                                                             @endforeach
@@ -80,7 +81,8 @@
                                             </div>
                                             <div class="gen-movie-action">
                                                 <div class="gen-btn-container">
-                                                    <a href="single-movie.html" class="gen-button .gen-button-dark">
+                                                    <a href="{{route('movie',['movie' => $featured_movie->slug])}}"
+                                                        target="_blank" class="gen-button .gen-button-dark">
                                                         <i aria-hidden="true" class="fas fa-play"></i> <span
                                                             class="text">Play
                                                             Now</span>

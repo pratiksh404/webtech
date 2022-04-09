@@ -18,7 +18,7 @@
     <!--=========== Loader =============-->
     <div id="gen-loading">
         <div id="gen-loading-center">
-            <img src="images/logo-1.png" alt="loading">
+            <img src="{{asset('images/logo.ico')}}" alt="loading">
         </div>
     </div>
     <!--=========== Loader =============-->

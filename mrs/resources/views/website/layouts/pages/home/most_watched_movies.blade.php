@@ -1,15 +1,15 @@
-@isset($latest_movies)
-@if ($latest_movies->count() > 0)
-<section class="gen-section-padding-2">
+@isset($most_watched_movies)
+@if ($most_watched_movies->count() > 0)
+<section class="pt-0 gen-section-padding-2">
     <div class="container">
         <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6">
-                <h4 class="gen-heading-title">Latest Movies</h4>
+                <h4 class="gen-heading-title">Most Watched Shows</h4>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 d-none d-md-inline-block">
                 <div class="gen-movie-action">
                     <div class="gen-btn-container text-right">
-                        <a href="{{route('latestMovies')}}" class="gen-button gen-button-flat">
+                        <a href="{{route('mostWatchedMovies')}}" class="gen-button gen-button-flat">
                             <span class="text">More Videos</span>
                         </a>
                     </div>
@@ -22,7 +22,7 @@
                     <div class="owl-carousel owl-loaded owl-drag" data-dots="false" data-nav="true" data-desk_num="4"
                         data-lap_num="3" data-tab_num="2" data-mob_num="1" data-mob_sm="1" data-autoplay="false"
                         data-loop="false" data-margin="30">
-                        @foreach ($latest_movies as $movie)
+                        @foreach ($most_watched_movies as $movie)
                         <div class="item">
                             <div
                                 class="movie type-movie status-publish has-post-thumbnail hentry movie_genre-action movie_genre-adventure movie_genre-drama">
@@ -30,7 +30,7 @@
                                     <div class="gen-movie-contain">
                                         <div class="gen-movie-img">
                                             <img src="{{$movie->image}}" alt="
-                                                        owl-carousel-video-image">
+                                                                                owl-carousel-video-image">
                                             @if (auth()->check())
                                             <div class="gen-movie-add">
                                                 <div class="wpulike wpulike-heart">
