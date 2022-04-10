@@ -21,6 +21,14 @@ class UserSeeder extends Seeder
             'name'    => 'Admin User',
             'email'    => 'admin@admin.com',
             'password'   =>  Hash::make('admin123'),
+            'role'   =>  1,
+            'remember_token' =>  Str::random(10),
+        ]);
+        User::create([
+            'name'    => 'Normal User',
+            'email'    => 'normal@user.com',
+            'password'   =>  Hash::make('user123'),
+            'role'   =>  2,
             'remember_token' =>  Str::random(10),
         ]);
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Website\PageController;
 
 /*
@@ -30,12 +31,14 @@ Route::get('/category/{category:slug}', [PageController::class, 'category'])->na
 Route::post('/search', [PageController::class, 'search'])->name('search');
 
 // Login Register Routes
-Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::get('login', [LoginController::class, 'index'])->name('login.index');
+Route::get('register', [RegisterController::class, 'index'])->name('register.index');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-Route::post('authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::post('login', [LoginController::class, 'store'])->name('login.store');
+Route::post('register', [RegisterController::class, 'store'])->name('register.store');
 
 // Backend routes
-Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('category', CategoryController::class);
     Route::resource('movie', MovieController::class);

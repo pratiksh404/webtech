@@ -24,14 +24,18 @@
     <!--=========== Loader =============-->
 
     <!--========== Header ==============-->
+    @if ($include_menu ?? true)
     @include('website.layouts.components.menu')
+    @endif
     <!--========== Header ==============-->
     {{-- Content --}}
     @yield('content')
 
 
     <!-- footer start -->
+    @if ($include_footer ?? true)
     @include('website.layouts.components.footer')
+    @endif
     <!-- footer End -->
 
     <!-- Back-to-Top start -->

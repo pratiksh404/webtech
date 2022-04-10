@@ -12,7 +12,7 @@
         </li>
         @else
         <li class="list-group-item">
-            <a href="{{ route('login') }}" class="btn btn-primary">Log in</a>
+            <a href="{{ route('login.index') }}" class="btn btn-primary">Log in</a>
         </li>
         @endauth
         <div class="list-group-item">

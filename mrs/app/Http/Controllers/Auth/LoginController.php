@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login()
+    public function index()
     {
-        return Auth::check() ? redirect()->route('dashboard') : view('auth.login');
+        return Auth::check() ? redirect()->route(auth()->user()->getRawOriginal('role') == 1 ? 'dashboard' : 'home') : view('auth.login');
     }
 
-    public function authenticate(Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'email'   => 'required|email',
@@ -26,7 +26,7 @@ class LoginController extends Controller
         );
 
         if (Auth::attempt($user_data)) {
-            return redirect()->route('home');
+            return redirect()->route(auth()->user()->getRawOriginal('role') == 1 ? 'dashboard' : 'home');
         } else {
             return back()->with('error', 'Wrong Login Details');
         }

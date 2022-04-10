@@ -54,11 +54,16 @@
                                     <ul class="gen-account-menu">
                                         <!-- Pms Menu -->
                                         <li>
-                                            <a href="log-in.html"><i class="fas fa-sign-in-alt"></i>
+                                            @if (auth()->check())
+                                            <a href="{{route('logout')}}"><i class="fas fa-sign-in-alt"></i>
+                                                logout </a>
+                                            @else
+                                            <a href="{{route('login.index')}}"><i class="fas fa-sign-in-alt"></i>
                                                 login </a>
+                                            @endif
                                         </li>
                                         <li>
-                                            <a href="register.html"><i class="fa fa-user"></i>
+                                            <a href="{{route('register.index')}}"><i class="fa fa-user"></i>
                                                 Register </a>
                                         </li>
                                         <!-- Library Menu -->
