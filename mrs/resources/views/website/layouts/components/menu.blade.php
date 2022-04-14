@@ -67,27 +67,13 @@
                                                 Register </a>
                                         </li>
                                         <!-- Library Menu -->
+                                        @if (auth()->check())
                                         <li>
-                                            <a href="library.html">
+                                            <a href="{{route('user_favorites',['user' => auth()->user()->id])}}">
                                                 <i class="fa fa-indent"></i>
-                                                Library </a>
+                                                My Favourites </a>
                                         </li>
-                                        <li>
-                                            <a href="library.html"><i class="fa fa-list"></i>
-                                                Movie Playlist </a>
-                                        </li>
-                                        <li>
-                                            <a href="library.html"><i class="fa fa-list"></i>
-                                                Tv Show Playlist </a>
-                                        </li>
-                                        <li>
-                                            <a href="library.html"><i class="fa fa-list"></i>
-                                                Video Playlist </a>
-                                        </li>
-                                        <li>
-                                            <a href="upload-video.html"> <i class="fa fa-upload"></i>
-                                                Upload Video </a>
-                                        </li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>

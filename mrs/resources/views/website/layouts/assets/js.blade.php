@@ -19,4 +19,25 @@
 
 <script src="{{asset('js/streamlab-core.js')}}"></script>
 
+<script src="{{asset('js/toastr.min.js')}}"></script>
+
 <script src="{{asset('js/script.js')}}"></script>
+
+<script>
+    $(function(){
+        $(document).on('click','#movie',function(){
+            var movie_id = $(this).data('movie_id');
+            var user_id = $(this).data('user_id');
+            var movie = $(this);
+
+            $.get('{{route("favorite")}}',
+            {
+                movie_id:movie_id,
+                user_id:user_id
+            },function(data){
+                toastr.info('Movie favorite toggled')
+                movie.addClass(data.result ? 'text-danger' : '');
+            });
+        });
+    });
+</script>

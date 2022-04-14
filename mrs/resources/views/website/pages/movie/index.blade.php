@@ -44,8 +44,10 @@
                                     @if (auth()->check())
                                     <div class="gen-movie-add">
                                         <div class="wpulike wpulike-heart">
-                                            <div class="wp_ulike_general_class wp_ulike_is_not_liked"><button
-                                                    type="button" class="wp_ulike_btn wp_ulike_put_image"></button>
+                                            <div class="wp_ulike_general_class wp_ulike_is_not_liked">
+                                                <button type="button" id="movie" data-movie_id="{{$movie->id}}"
+                                                    data-user_id="{{auth()->check() ? auth()->user()->id : null}}"
+                                                    class="wp_ulike_btn wp_ulike_put_image {{$movie->isLikedByUser(auth()->check() ? auth()->user()->id : null) ? 'text-danger' : ''}}"></button>
                                             </div>
                                         </div>
                                     </div>

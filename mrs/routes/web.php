@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\ActorController;
 use App\Models\Movie;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\ActorController;
 use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Website\PageController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Website\PageController;
+use App\Http\Controllers\Website\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,10 @@ Route::get('/most-watched-movies', [PageController::class, 'mostWatchedMovies'])
 Route::get('/movie/{movie:slug}', [PageController::class, 'movie'])->name('movie');
 Route::get('/category/{category:slug}', [PageController::class, 'category'])->name('category');
 Route::post('/search', [PageController::class, 'search'])->name('search');
+Route::get('user-favorites/{user}', [FavoriteController::class, 'user_favorites'])->name('user_favorites');
+
+// AJAX Routes
+Route::get('favorite', [FavoriteController::class, 'favorite'])->name('favorite');
 
 // Login Register Routes
 Route::get('login', [LoginController::class, 'index'])->name('login.index');

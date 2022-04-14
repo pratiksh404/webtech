@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use App\Models\Actor;
+use App\Models\Category;
+use App\Models\Favorite;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
@@ -26,6 +28,10 @@ class Movie extends Model implements Viewable
     public function actors()
     {
         return $this->belongsToMany(Actor::class, 'actor_movie')->withTimestamps();
+    }
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
 
 
@@ -71,5 +77,10 @@ class Movie extends Model implements Viewable
     public function getReleaseDateAttribute($attribute)
     {
         return !is_null($attribute) ? Carbon::create($attribute)->toFormatteddatestring() : null;
+    }
+
+    public function isLikedByUser($user_id)
+    {
+        return $this->favorites()->where('user_id', $user_id)->exists();
     }
 }

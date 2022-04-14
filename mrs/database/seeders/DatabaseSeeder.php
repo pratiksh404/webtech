@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ActorSeeder::class,
             MoviesTableSeeder::class,
+            AttachCategoryAndActorToMoviesTableSeeder::class,
         ]);
     }
 }
