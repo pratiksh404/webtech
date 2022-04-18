@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Movie;
+use App\Service\MovieSimilarity;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\ActorController;

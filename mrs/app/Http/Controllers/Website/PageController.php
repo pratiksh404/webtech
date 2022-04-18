@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Website;
 
 use App\Models\Movie;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Service\MovieSimilarity;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
 class PageController extends Controller
@@ -15,7 +16,14 @@ class PageController extends Controller
         $featured_movies = Movie::where('featured', 1)->take(10)->get();
         $latest_movies = Movie::take(10)->get();
         $most_watched_movies = Movie::orderByViews()->take(10)->get();
-        return view('website.index', compact('featured_movies', 'latest_movies', 'most_watched_movies'));
+        $favorite_movies = null;
+     if (auth()->check()) {
+         $favorites = auth()->user()->favorites()->pluck('movie_id')->toArray();
+
+        $favorite_movies = Movie::whereIn('id', $favorites)->limit(10)->get();
+     }
+
+        return view('website.index', compact('featured_movies', 'latest_movies', 'most_watched_movies','favorite_movies'));
     }
 
     public function movies()
@@ -41,7 +49,15 @@ class PageController extends Controller
     {
         $title = "All Movies";
         views($movie)->record();
-        return view('website.pages.movie.show', compact('movie', 'title'));
+
+        /* Recommendation */
+        $movies = Movie::latest()->get();
+        $movieSimilarity = new MovieSimilarity($movie->id, $movies);
+        $movieSimilarity->setViewsWeight(1.5);
+        $similarityMatrix  = $movieSimilarity->calculateSimilarityMatrix();
+        $recommendeded_movies = $movieSimilarity->getProductsSortedBySimilarity($similarityMatrix);
+
+        return view('website.pages.movie.show', compact('movie', 'title','recommendeded_movies'));
     }
 
     public function category(Category $category)
