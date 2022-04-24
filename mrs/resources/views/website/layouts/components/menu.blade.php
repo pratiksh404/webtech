@@ -10,6 +10,13 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <div id="gen-menu-contain" class="gen-menu-contain">
                                 <ul id="gen-main-menu" class="navbar-nav ml-auto">
+                                    @if (auth()->check())
+                                    @if (auth()->user()->role == 1)
+                                    <li class="menu-item">
+                                        <a href="{{route('dashboard')}}" aria-current="page">Dashboard</a>
+                                    </li>
+                                    @endif
+                                    @endif
                                     <li class="menu-item active">
                                         <a href="{{route('home')}}" aria-current="page">Home</a>
                                     </li>
